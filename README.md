@@ -1,4 +1,4 @@
-# wepbconv-es6 (work in progress)
+# webpconv-es6 (work in progress)
 A small [node.js](http://nodejs.org) library for working with [WebP](https://developers.google.com/speed/webp/docs/using) format. Supports the Promise API.
 
 ### Example
