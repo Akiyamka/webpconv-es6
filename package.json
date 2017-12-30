@@ -1,0 +1,19 @@
+{
+  "name": "wepbconv-es6",
+  "version": "0.0.2",
+  "description": "[![webp-converter Logo](images/nlogo.gif)](https://www.npmjs.com/package/webp-converter)",
+  "main": "webpconverter.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^4.0.1"
+  },
+  "scripts": {
+    "test": "mocha ./tests/*.test.js"
+  },
+  "author": "akiyamka@gmail.com",
+  "license": "ISC"
+}
