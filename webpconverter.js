@@ -1,30 +1,31 @@
 const exec 	     = require('child_process').execFile;
-const cwebpLib   = require('./cwebp.js');   //get cwebp module (converts other image format to webp)
+// const cwebpLib   = require('./cwebp.js');   //get cwebp module (converts other image format to webp)
 const dwebpLib   = require('./dwebp.js');   //get dwebp module (converts webp format to other image)
 const gwebpLib   = require('./gwebp.js');   //get gif2webp module (convert git image to webp)
+const getLib     = require('./lib-resolver.js');
 const webpmuxLib = require('./webpmux.js'); //get webpmux module (convert non animated webp images to animated webp)
 
 /**
  * Convert image to webp format
  * @param {string} inputImage  - path to the image sourse
+ * @param {string} options      - options (quality for example)
  * @param {string} outputImage - path for save converted image
- * @param {string} option      - options (quality for example)
  */
-module.exports.cwebp = function(inputImage, outputImage, option) {
-    let query = inputImage + ' -o ' + outputImage;
-    // let query = option + ' ' + inputImage + ' -o ' + outputImage;
-    // console.log(query);
+module.exports.cwebp = function(inputImage, options, outputImage = '-') {
+    let query = `${options} ${inputImage} -o ${outputImage}`;
+    if (inputImage.slice(0, 1) === '-') {
+        return Promise.reject({error: 'Please do not use file name starts with "-"'})
+    }
 
     return new Promise((resolve, reject) => {
-        exec(cwebpLib(), query.split(/\s+/), function(error, stdout, stderr) {
+        exec(getLib('cwebp'), query.split(/\s+/), {encoding:'hex'}, function(error, stdout, stderr) {
             if (error) {
                 reject({error, stdout, stderr});
             } else {
-                resolve(outputImage)
+                resolve(outputImage === '-' ? stdout : outputImage);
             }
         });
     })
-
 };
 
 /**
@@ -34,15 +35,18 @@ module.exports.cwebp = function(inputImage, outputImage, option) {
  * @param {string} option      - options (quality for example)
  * @param callback
  */
-module.exports.dwebp = function(inputImage, outputImage, option) {
-    let query = inputImage + ' -o ' + outputImage;
+module.exports.dwebp = function(inputImage, options, outputImage = '-') {
+    let query = `${options} ${inputImage} -o ${outputImage}`;
+    if (inputImage.slice(0, 1) === '-') {
+        return Promise.reject({error: 'Please do not use file name starts with "-"'})
+    }
 
     return new Promise((resolve, reject) => {
-        exec(dwebpLib(), query.split(/\s+/), function(error, stdout, stderr) {
+        exec(getLib('dwebp'), query.split(/\s+/), {encoding:'hex'}, function(error, stdout, stderr) {
             if (error) {
                 reject({error, stdout, stderr});
             } else {
-                resolve(outputImage)
+                resolve(outputImage === '-' ? stdout : outputImage);
             }
         });
     })

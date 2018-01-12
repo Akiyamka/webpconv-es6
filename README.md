@@ -6,14 +6,15 @@ Convert .png image to .webp format
 ```js
 const converter = require('webpconverter');
 
-converter.cwebp(pathToPng, pathToSaveWebp, quality)
-  .then(function(response) {
-    console.log(response); // response === pathToOutput
+converter.cwebp(pathToPng, options)
+  .then((response) => {
+    fs.writeFile(path.join(__dirname, 'new.webp'), stdout, 'hex');
   })
-  .catch(function(error) {
+  .catch((error) => {
     console.log(error);
   });
 ```
+
 ### API
   - [cwebp](https://developers.google.com/speed/webp/docs/cwebp)  - image to webp.
   - [dwebp](https://developers.google.com/speed/webp/docs/dwebp)  - webp to image.
