@@ -24,7 +24,7 @@ converter.cwebp(pathToFile, options)
   - [webpmux](https://developers.google.com/speed/webp/docs/webpmux)  - work in progress! Not supproted yet. Create animated WebP files from non-animated WebP images, extract frames from animated WebP images, and manage XMP/EXIF metadata and ICC profile.
 
 ### Converter version
-   Used 0.6.1 (2017, November)
+   libwebp 0.6.1 (2017, November)
 
 ## License
 https://developers.google.com/speed/webp/download?hl=ru
