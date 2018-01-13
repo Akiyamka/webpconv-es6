@@ -25,6 +25,7 @@ converter.cwebp(pathToFile, options)
 
 ### Converter version
    Used 0.6.1 (2017, November)
+
 ## License
 https://developers.google.com/speed/webp/download?hl=ru
   [MIT](LICENSE)
