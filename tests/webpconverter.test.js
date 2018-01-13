@@ -18,6 +18,23 @@ it('Should convert .png to .webp file and return hex stdout', function() {
         });
 });
 
+it('Should convert .png to .webp file and return path to saved file', function() {
+    let pathToFile = path.join(__dirname, 'assests/png/test.png');
+    let pathToSave = path.join(__dirname, 'temp/save-test.webp');
+    let options = '-q 80';
+
+    return converter.cwebp(pathToFile, options, pathToSave)
+        .then((res) => {
+            assert(res === pathToSave, "Return path for saved file");
+            fse.pathExists(pathToSave)
+                .then(exists => assert(exists, "File realy exist"))
+                .catch(notexist => new Error('Test crash, fileNotExist'));
+
+        }).catch((err) => {
+            throw new Error(`Test crash, catch error: ${err}`);
+        });
+});
+
 it('Should convert .webp to .png file and return hex stdout', function() {
     let pathToFile = path.join(__dirname, 'assests/webp/test.webp');
 
